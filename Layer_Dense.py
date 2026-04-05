@@ -1,5 +1,8 @@
+import numpy as np
+
 #Layer Initialization
 class Layer_Dense:
+    #Dense layer of neurons means that every output from the previous layer is an input to the every neuron in the current layer
     
     # Initializing weights and biases 
     # For now these are random just for the sake of constructing a network of neurons

@@ -1,3 +1,5 @@
+import numpy as np
+
 # Activation function ReLU (Rectified Linear Unit)
 # This function introduced non-linearity
 # Returns the input if its non-negative and returns 0 if its negative        
