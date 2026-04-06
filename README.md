@@ -8,4 +8,8 @@ The model will be trained on the MNIST dataset, with the objective of achieving 
 
 ## Resources
 
-- (Add links here)
+- ELEC320 - University of Liverpool
+- https://realpython.com/python-ai-neural-network/
+- https://www.youtube.com/watch?v=w8yWXqWQYmU
+- https://www.youtube.com/watch?v=cAkMcPfY_Ns
+- https://nnfs.io/
