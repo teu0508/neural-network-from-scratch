@@ -79,3 +79,5 @@ for iteration in range ( 10000 ):
         dense1.biases = best_dense1_biases.copy()
         dense2.weights = best_dense2_weights.copy()
         dense2.biases = best_dense2_biases.copy()        
+        
+print('Best weights after training:')
