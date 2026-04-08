@@ -12,14 +12,8 @@ from Activation_Softmax_Loss_Categorical_CrossEntropy import Activation_Softmax_
 
 nnfs.init()
 
-
-
-
 # Create dataset
 X, y = spiral_data(100, 3)
-
-#plt.scatter(X[:, 0 ], X[:, 1 ], c = y, cmap = 'brg' )
-#plt.show()
 
 dense1 = Layer_Dense(2, 3) # first layer has 2 inputs and 3 neurons 
 
