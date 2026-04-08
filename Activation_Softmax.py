@@ -27,3 +27,20 @@ class Activation_Softmax:
             value /= np.sum(exp_values, axis=1, keepdims=True) #denominator, we divide the numerator by the sum of all the exponentials to get the probabilities
         
         self.output = exp_values
+        
+    def backward_pass(self, dvalues):
+        
+        # Create uninitialized array
+        self.dinputs = np.empty_like(dvalues)
+        
+        for index, (single_output, single_dvalues) in enumerate(zip(self.output, dvalues)):
+            
+            # Flatten output array
+            single_output = single_output.reshape(-1,1)
+            
+            # Jacobian matrix of the softmax function
+            jacobian_matrix = np.diagflat(single_output) - np.dot(single_output, single_output.T)
+            
+            # Add sample wise gradient to array of sample gradients
+            self.dinputs[index] = np.dot(jacobian_matrix, single_dvalues)
+            

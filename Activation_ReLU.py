@@ -9,6 +9,9 @@ class Activation_ReLU:
         pass
     
     def forward_pass(self, inputs):
+        # Remember input values
+        self.inputs = inputs
+        
         self.output = np.maximum(0, inputs)
         
     # Just the logic behind the ReLU forward pass without using numpy function 
@@ -19,3 +22,12 @@ class Activation_ReLU:
                 self.output.append(input)
             else:
                 self.output.append(0)
+    
+    # Backward pass
+    def backward_pass(self , dvalues):
+        # Since we need to modify original variable,
+        # let's make a copy of values first
+        self.dinputs = dvalues.copy()
+        
+        # Zero gradient where input values were negative
+        self.dinputs[self.inputs <= 0 ] = 0
