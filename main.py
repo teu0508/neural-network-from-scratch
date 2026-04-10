@@ -9,6 +9,7 @@ from Activation_ReLU import Activation_ReLU
 from Activation_Softmax import Activation_Softmax
 from Loss import Loss, Loss_CategoricalCrossEntropy
 from Activation_Softmax_Loss_Categorical_CrossEntropy import Activation_Softmax_Loss_Categorical_CrossEntropy
+from SGD import Optimizer_SGD
 
 nnfs.init()
 
@@ -24,6 +25,9 @@ dense2 = Layer_Dense(3, 3) # second layer has 3 inputs and 3 neurons (3 inputs b
 activation2 = Activation_Softmax() # activation function for the second layer, we want to use softmax here because we are doing a classification problem and softmax gives us a probability distribution for each of our output classes
 
 loss_activation = Activation_Softmax_Loss_Categorical_CrossEntropy()
+
+optimizer = Optimizer_SGD()
+
 
 
 dense1.forward_pass(X) #applying our inputs in our neural network layer
@@ -56,11 +60,13 @@ activation1.backward_pass(dense2.dinputs)
 dense1.backward_pass(activation1.dinputs)
 
 # Print gradients
-print(dense1.dweights)
-print(dense1.dbiases)
-print(dense2.dweights)
-print(dense2.dbiases)
+#print(dense1.dweights)
+#print(dense1.dbiases)
+#print(dense2.dweights)
+#print(dense2.dbiases)
 
+optimizer.update_params(dense1)
+optimizer.update_params(dense2)
 
 
 # Forward pas through the network
