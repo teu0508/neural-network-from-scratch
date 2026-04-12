@@ -16,19 +16,20 @@ nnfs.init()
 # Create dataset
 X, y = spiral_data(100, 3)
 
-dense1 = Layer_Dense(2, 3) # first layer has 2 inputs and 3 neurons 
+dense1 = Layer_Dense(2, 64) # first layer has 2 inputs and 64 neurons 
 
 activation1 = Activation_ReLU() # activation function for the first layer
 
-dense2 = Layer_Dense(3, 3) # second layer has 3 inputs and 3 neurons (3 inputs because there are 3 outputs in the previous dense layer)
+dense2 = Layer_Dense(64, 3) # second layer has 64 inputs and 3 neurons (64 inputs because there are 64 outputs in the previous dense layer)
 
 activation2 = Activation_Softmax() # activation function for the second layer, we want to use softmax here because we are doing a classification problem and softmax gives us a probability distribution for each of our output classes
 
 loss_activation = Activation_Softmax_Loss_Categorical_CrossEntropy()
 
-optimizer = Optimizer_SGD()
+optimizer = Optimizer_SGD(decay = 1e-3, momentum=0.9)
 
-iterations = 20000
+
+iterations = 10001
 for epoch in range(iterations):
     dense1.forward_pass(X) #applying our inputs in our neural network layer
 
@@ -40,7 +41,7 @@ for epoch in range(iterations):
     
     '''
     # Output of the first few samples:
-    print(loss_activation.output[: 5 ])
+    print(loss_activation.output[:5])
     # Print loss value
     print('loss: ', loss)
     '''
@@ -53,7 +54,7 @@ for epoch in range(iterations):
     accuracy = np.mean(predictions == y)
 
     if not (epoch % 100):
-        print(f'epoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}')
+        print(f'epoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}, lr: {optimizer.current_learning_rate:.3f}')
     
     # Backward pass
     loss_activation.backward_pass(loss_activation.output, y)
@@ -67,12 +68,14 @@ for epoch in range(iterations):
     #print(dense2.dweights)
     #print(dense2.dbiases)
 
+    optimizer.pre_update_params()
     optimizer.update_params(dense1)
     optimizer.update_params(dense2)
+    optimizer.post_update_params()
 
     # my own quick attempt
-    #optimizer.update_params2(dense2, epoch, iterations)
-    #optimizer.update_params2(dense2, epoch, iterations)
+    #optimizer.update_params_test(dense2, epoch, iterations)
+    #optimizer.update_params_test(dense2, epoch, iterations)
 
 
 # Forward pas through the network
