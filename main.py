@@ -28,8 +28,8 @@ activation2 = Activation_Softmax() # activation function for the second layer, w
 
 loss_activation = Activation_Softmax_Loss_Categorical_CrossEntropy()
 
-optimizer = Optimizer_SGD(decay = 3*1e-3, momentum=0.99)
-#optimizer = Optimizer_AdaGrad(decay = 1e-3)
+#optimizer = Optimizer_SGD(decay = 3*1e-3, momentum=0.99)
+optimizer = Optimizer_AdaGrad(decay = 1e-3)
 
 
 iterations = 20001
