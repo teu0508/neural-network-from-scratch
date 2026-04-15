@@ -3,7 +3,7 @@ import numpy as np
 #Stochastic Gradient Descent (SGD)
 class Optimizer_AdaGrad:
     
-    def __init__(self, learning_rate = 1, decay = 0., epsilon=1e-7):
+    def __init__(self, learning_rate = 0.9, decay = 0., epsilon=1e-7):
         self.learning_rate = learning_rate
         self.current_learning_rate = learning_rate
         self.decay = decay
