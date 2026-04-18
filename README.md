@@ -13,3 +13,10 @@ The model will be trained on the MNIST dataset, with the objective of achieving 
 - https://www.youtube.com/watch?v=w8yWXqWQYmU
 - https://www.youtube.com/watch?v=cAkMcPfY_Ns
 - https://nnfs.io/
+
+### Other links
+- https://cs231n.github.io/neural-networks-case-study/
+- https://cs231n.stanford.edu/
+- https://www.kaggle.com/datasets/hojjatk/mnist-dataset/data
+- https://nnfs.io/mvp/
+- https://nnfs.io/
