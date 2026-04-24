@@ -11,6 +11,7 @@ from Loss import Loss, Loss_CategoricalCrossEntropy
 from Activation_Softmax_Loss_Categorical_CrossEntropy import Activation_Softmax_Loss_Categorical_CrossEntropy
 from SGD import Optimizer_SGD
 from AdaGrad import Optimizer_AdaGrad
+from RMSprop import Optimizer_RMSProp
 
 
 nnfs.init()
@@ -29,10 +30,10 @@ activation2 = Activation_Softmax() # activation function for the second layer, w
 loss_activation = Activation_Softmax_Loss_Categorical_CrossEntropy()
 
 #optimizer = Optimizer_SGD(decay = 3*1e-3, momentum=0.99)
-optimizer = Optimizer_AdaGrad(decay = 1e-3)
+optimizer = Optimizer_RMSProp(learning_rate=0.02, decay = 1e-5, rho=0.999)
 
 
-iterations = 20001
+iterations = 10001
 for epoch in range(iterations):
     dense1.forward_pass(X) #applying our inputs in our neural network layer
 
