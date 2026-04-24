@@ -1,4 +1,4 @@
-
+import numpy as np
 
 class Optimizer_RMSProp:
     
@@ -10,8 +10,16 @@ class Optimizer_RMSProp:
         self.epsilon = epsilon
         self.rho = rho
     
-    def update_params(self):
-        pass
+    def update_params(self, layer):
+        if not hasattr(layer, 'weight_cache'):
+            # If layer doesnt have momentum arrays and biases arrays yet create them initialized to all zeros
+            layer.weight_cache = np.zeros_like(layer.weights)
+            layer.bias_cache = np.zeros_like(layer.biases)
+            
+        layer.weight_cache = self.rho * layer.weight_cache + ( 1 - self.rho) * layer.dweights ** 2
+        
+        layer.bias_cache = self.rho * layer.biases_cache + ( 1 - self.rho) * layer.dbiases ** 2
+        
     
     def pre_update_params(self):
         if self.decay:
