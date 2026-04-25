@@ -16,7 +16,15 @@ class Optimizer_Adam:
             self.current_learning_rate = self.learning_rate * (1. / (1. + self.decay * self.iterations))
 
     def update_params(self, layer):
-        pass
+        # If layer does not contain cache arrays,
+        # create them filled with zeros
+        if not hasattr (layer, 'weight_cache' ):
+            layer.weight_momentums = np.zeros_like(layer.weights)
+            layer.weight_cache = np.zeros_like(layer.weights)
+            layer.bias_momentums = np.zeros_like(layer.biases)
+            layer.bias_cache = np.zeros_like(layer.biases)
+            
+        
     
     def post_update_params(self):
         self.iterations += 1
