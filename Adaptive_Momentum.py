@@ -28,6 +28,9 @@ class Optimizer_Adam:
         layer.weight_momentums = self.beta_1 * layer.weight_momentums + (1 - self.beta_1) * layer.dweights
         layer.bias_momentum = self.beta_1 * layer.biases_momentums + (1 - self.beta_1) * layer.dbiases
         
+        weight_momentums_corrected = layer.weight_momentums / (1 - self.beta_1 ** (self.iterations + 1)) 
+        bias_momentums_corrected = layer.bias_momentums / (1 - self.beta_1 ** (self.iterations + 1)) 
+
         
         
         
