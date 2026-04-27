@@ -24,7 +24,7 @@ class Optimizer_Adam:
             layer.bias_momentums = np.zeros_like(layer.biases)
             layer.bias_cache = np.zeros_like(layer.biases)
             
-        # parameter updates lgogic
+        # parameter updates logic
         layer.weight_momentums = self.beta_1 * layer.weight_momentums + (1 - self.beta_1) * layer.dweights
         layer.bias_momentum = self.beta_1 * layer.biases_momentums + (1 - self.beta_1) * layer.dbiases
         
