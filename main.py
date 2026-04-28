@@ -12,6 +12,7 @@ from Activation_Softmax_Loss_Categorical_CrossEntropy import Activation_Softmax_
 from SGD import Optimizer_SGD
 from AdaGrad import Optimizer_AdaGrad
 from RMSprop import Optimizer_RMSProp
+from Adaptive_Momentum import Optimizer_Adam
 
 
 nnfs.init()
@@ -30,7 +31,8 @@ activation2 = Activation_Softmax() # activation function for the second layer, w
 loss_activation = Activation_Softmax_Loss_Categorical_CrossEntropy()
 
 #optimizer = Optimizer_SGD(decay = 3*1e-3, momentum=0.99)
-optimizer = Optimizer_RMSProp(learning_rate=0.02, decay = 1e-5, rho=0.999)
+#optimizer = Optimizer_RMSProp(learning_rate=0.02, decay = 1e-5, rho=0.999)
+optimizer = Optimizer_Adam(learning_rate=0.02, decay=1e-5)
 
 
 iterations = 10001

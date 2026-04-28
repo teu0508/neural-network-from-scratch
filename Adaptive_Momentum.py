@@ -8,8 +8,8 @@ class Optimizer_Adam:
         self.decay = decay
         self.iterations = 0
         self.epsilon = epsilon
-        self.beta1 = beta_1
-        self.beta2 = beta_2
+        self.beta_1 = beta_1
+        self.beta_2 = beta_2
         
     def pre_update_params(self):
         if self.decay:
@@ -26,14 +26,21 @@ class Optimizer_Adam:
             
         # parameter updates logic
         layer.weight_momentums = self.beta_1 * layer.weight_momentums + (1 - self.beta_1) * layer.dweights
-        layer.bias_momentum = self.beta_1 * layer.biases_momentums + (1 - self.beta_1) * layer.dbiases
+        layer.bias_momentum = self.beta_1 * layer.bias_momentums + (1 - self.beta_1) * layer.dbiases
         
         weight_momentums_corrected = layer.weight_momentums / (1 - self.beta_1 ** (self.iterations + 1)) 
         bias_momentums_corrected = layer.bias_momentums / (1 - self.beta_1 ** (self.iterations + 1)) 
-
         
+        layer.weight_cache = self.beta_2 * layer.weight_cache + (1 - self.beta_2) * layer.dweights**2
+        layer.bias_cache = self.beta_2 * layer.bias_cache + (1 - self.beta_2) * layer.dbiases**2
         
+        #corrected cache
+        weight_cache_corrected = layer.weight_cache / (1 - self.beta_2 ** (self.iterations + 1))
+        bias_cache_corrected = layer.bias_cache / (1 - self.beta_2 ** (self.iterations + 1))
         
+        # sgd parameter update and normalization with square rooted cache
+        layer.weights += -self.current_learning_rate * weight_momentums_corrected / (np.sqrt(weight_cache_corrected) + self.epsilon)
+        layer.biases += -self.current_learning_rate * bias_momentums_corrected / (np.sqrt(bias_cache_corrected) + self.epsilon)
         
     
     def post_update_params(self):
