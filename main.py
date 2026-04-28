@@ -32,7 +32,7 @@ loss_activation = Activation_Softmax_Loss_Categorical_CrossEntropy()
 
 #optimizer = Optimizer_SGD(decay = 3*1e-3, momentum=0.99)
 #optimizer = Optimizer_RMSProp(learning_rate=0.02, decay = 1e-5, rho=0.999)
-optimizer = Optimizer_Adam(learning_rate=0.02, decay=1e-5)
+optimizer = Optimizer_Adam(learning_rate=0.05, decay=5e-7)
 
 
 iterations = 10001
