@@ -16,6 +16,19 @@ class Loss:
     
     def regularization_loss(self, layer):
         pass
+    
+        regularization_loss = 0
+        
+        
+        #L1 weight regularization
+        #only change if value is greater than 0
+        if layer.weight_regularizer_l1 > 0:
+            self.regularization_loss += layer.weight_regularizer_l1 * np.sum(np.abs(layer.dweights))
+            
+        #same thing for l2 weight regularization
+        if layer.weight_regularizer_l1 > 0:
+            self.regularization_loss += layer.weight_regularizer_l2 * np.sum(layer.dweights * layer.dweights)
+            
         
     
     
