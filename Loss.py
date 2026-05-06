@@ -14,6 +14,10 @@ class Loss:
         
         return data_loss
     
+    def regularization_loss(self, layer):
+        pass
+        
+    
     
 class Loss_CategoricalCrossEntropy(Loss):
     
@@ -31,7 +35,7 @@ class Loss_CategoricalCrossEntropy(Loss):
         negative_log_likelihoods = -np.log(correct_confidences)
         return negative_log_likelihoods
     
-    def backward ( self , dvalues , y_true ):
+    def backward_pass ( self , dvalues , y_true ):
         # Number of samples
         samples = len (dvalues)
         
